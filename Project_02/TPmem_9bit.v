@@ -32,9 +32,9 @@ always@(posedge i_clk) begin
         counter <= counter + 4'b1;
         else begin    
             if(counter[3]==1'b1)
-	    counter <= counter + 4'b1;
+	            counter <= counter + 4'b1;
     	    else    
-    	    counter <= counter ;
+    	        counter <= counter ;
     	    end
     end
 end
@@ -79,4 +79,3 @@ assign w_en = counter[3] ;
 assign w_data = data_out ; 
 
 endmodule
-
