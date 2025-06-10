@@ -13,7 +13,7 @@ module Full_dct(
     wire [8*8-1:0] DCT_1D_out;
     wire enable_0, enable_2;
     reg out_enable;
-    wire [8*12-1:0] DCT_2D_out;
+    wire [6*12-1:0] DCT_2D_out;
         // output of first tpmem is 8*9 bits
     wire [8*8-1:0] TP_0_out;
     //wire [8*10-1:0] TP_1_out;

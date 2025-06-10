@@ -1,12 +1,12 @@
 module DCT_2D(
     input [8*8-1:0] data_in,
     input control,
-    output [8*12-1:0] data_out
+    output [6*12-1:0] data_out
 );
     // Internal signals
     wire signed [8-1:0] x0, x1, x2, x3, x4, x5, x6, x7;    // 
     wire signed [19-1:0] z0, z1, z2, z3, z4, z5, z6, z7;    // 
-    wire signed [8-1:0] c1, c2, c3, c4, c5, c6, c7;    // 9.9
+    wire signed [8-1:0] c1, c2, c3, c4, c5, c6, c7;    // 9.8
     assign x0 = data_in[8*8-1:8*7];
     assign x1 = data_in[8*7-1:8*6];
     assign x2 = data_in[8*6-1:8*5];
@@ -76,6 +76,6 @@ module DCT_2D(
             end
         end
     end
-    
-    assign data_out = {z0_ov, z1_ov, z2[14:3], z3[14:3], z4[14:3], z5[14:3], z6[14:3], z7[14:3]};
+    // assign data_out = {zo_ov, z1_ov, z2[14:3], z3[14:3], z4[14:3], z5[14:3], z6[14:3]}
+    assign data_out = {z0_ov, z1_ov, z2[14:3], z3[14:3], {z4[14:6], 3'b0}, {z5[14:8], 5'b0}};//, 12'b0, 12'b0};
 endmodule
