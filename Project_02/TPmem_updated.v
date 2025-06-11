@@ -10,7 +10,12 @@ module TPmem_updated
 );
 // make counter outside
 reg [4-1:0]  counter ;
-reg [6*BW-1:0] array [6-1:0];
+reg [6*BW-1:0] array_0;
+reg [6*BW-1:0] array_1;
+reg [6*BW-1:0] array_2;
+reg [6*BW-1:0] array_3;
+reg [5*BW-1:0] array_4;
+reg [4*BW-1:0] array_5;
 reg [8*BW-1:0] data_out;
 
 wire [6*BW-1:0] col [6-1:0];
@@ -42,59 +47,61 @@ end
 
 always@(posedge i_clk) begin
     if(~i_Reset) begin
-	//array[7] <= {BW{8'b0}};
-	//array[6] <= {BW{8'b0}};
-	array[5] <= {BW{8'b0}};
-	array[4] <= {BW{8'b0}};
-	array[3] <= {BW{8'b0}};
-	array[2] <= {BW{8'b0}};
-	array[1] <= {BW{8'b0}};
-	array[0] <= {BW{8'b0}};
+	array_5 <= {BW{4'b0}};
+	array_4 <= {BW{5'b0}};
+	array_3 <= {BW{6'b0}};
+	array_2 <= {BW{6'b0}};
+	array_1 <= {BW{6'b0}};
+	array_0 <= {BW{6'b0}};
     end
     else    begin
 	    if(i_enable) begin
             if (counter[3] == 1'b0) begin
-                array[index] <= i_data ; 
+                if (index == 3'b000)
+                array_0 <= i_data;
+                else if (index == 3'b001)
+                array_1 <= i_data;
+                else if (index == 3'b010)
+                array_2 <= i_data;
+                else if (index == 3'b011)
+                array_3 <= i_data;
+                else if (index == 3'b100)
+                array_4 <= i_data[6*BW-1:1*BW];
+                else if (index == 3'b101)
+                array_5 <= i_data[6*BW-1:2*BW];
             end
             if (counter[3] == 1'b1) begin // if started counter reaches at 1000 
                 if (index == 3'b000) 
-                {{array[0][6*BW-1:5*BW]},{array[1][6*BW-1:5*BW]},{array[2][6*BW-1:5*BW]},{array[3][6*BW-1:5*BW]},{array[4][6*BW-1:5*BW]},{array[5][6*BW-1:5*BW]}} <= i_data;
+                {{array_0[6*BW-1:5*BW]},{array_1[6*BW-1:5*BW]},{array_2[6*BW-1:5*BW]},{array_3[6*BW-1:5*BW]},{array_4[5*BW-1:4*BW]},{array_5[4*BW-1:3*BW]}} <= i_data;
                 else if (index == 3'b001)
-                {{array[0][5*BW-1:4*BW]},{array[1][5*BW-1:4*BW]},{array[2][5*BW-1:4*BW]},{array[3][5*BW-1:4*BW]},{array[4][5*BW-1:4*BW]},{array[5][5*BW-1:4*BW]}} <= i_data;
+                {{array_0[5*BW-1:4*BW]},{array_1[5*BW-1:4*BW]},{array_2[5*BW-1:4*BW]},{array_3[5*BW-1:4*BW]},{array_4[4*BW-1:3*BW]},{array_5[3*BW-1:2*BW]}} <= i_data;
                 else if (index == 3'b010)
-                {{array[0][4*BW-1:3*BW]},{array[1][4*BW-1:3*BW]},{array[2][4*BW-1:3*BW]},{array[3][4*BW-1:3*BW]},{array[4][4*BW-1:3*BW]},{array[5][4*BW-1:3*BW]}} <= i_data;
+                {{array_0[4*BW-1:3*BW]},{array_1[4*BW-1:3*BW]},{array_2[4*BW-1:3*BW]},{array_3[4*BW-1:3*BW]},{array_4[3*BW-1:2*BW]},{array_5[2*BW-1:1*BW]}} <= i_data;
                 else if (index == 3'b011)
-                {{array[0][3*BW-1:2*BW]},{array[1][3*BW-1:2*BW]},{array[2][3*BW-1:2*BW]},{array[3][3*BW-1:2*BW]},{array[4][3*BW-1:2*BW]},{array[5][3*BW-1:2*BW]}} <= i_data;
+                {{array_0[3*BW-1:2*BW]},{array_1[3*BW-1:2*BW]},{array_2[3*BW-1:2*BW]},{array_3[3*BW-1:2*BW]},{array_4[2*BW-1:1*BW]},{array_5[1*BW-1:0*BW]}} <= i_data;
                 else if (index == 3'b100)
-                {{array[0][2*BW-1:1*BW]},{array[1][2*BW-1:1*BW]},{array[2][2*BW-1:1*BW]},{array[3][2*BW-1:1*BW]},{array[4][2*BW-1:1*BW]},{array[5][2*BW-1:1*BW]}} <= i_data;
+                {{array_0[2*BW-1:1*BW]},{array_1[2*BW-1:1*BW]},{array_2[2*BW-1:1*BW]},{array_3[2*BW-1:1*BW]},{array_4[1*BW-1:0*BW]}} <= i_data[6*BW-1:1*BW];
                 else if (index == 3'b101)
-                {{array[0][1*BW-1:0*BW]},{array[1][1*BW-1:0*BW]},{array[2][1*BW-1:0*BW]},{array[3][1*BW-1:0*BW]},{array[4][1*BW-1:0*BW]},{array[5][1*BW-1:0*BW]}} <= i_data;
-                //else if (index == 3'b110)
-                //{{array[0][2*BW-1:1*BW]},{array[1][2*BW-1:1*BW]},{array[2][2*BW-1:1*BW]},{array[3][2*BW-1:1*BW]},{array[4][2*BW-1:1*BW]},{array[5][2*BW-1:1*BW]}} <= i_data;
-                //else 
-                //{{array[0][1*BW-1:0*BW]},{array[1][1*BW-1:0*BW]},{array[2][1*BW-1:0*BW]},{array[3][1*BW-1:0*BW]},{array[4][1*BW-1:0*BW]},{array[5][1*BW-1:0*BW]}} <= i_data;
+                {{array_0[1*BW-1:0*BW]},{array_1[1*BW-1:0*BW]},{array_2[1*BW-1:0*BW]},{array_3[1*BW-1:0*BW]}} <= i_data[6*BW-1:2*BW];
             end
 	    end
     end
 end
 
-assign col[0] = {{array[0][6*BW-1:5*BW]},{array[1][6*BW-1:5*BW]},{array[2][6*BW-1:5*BW]},{array[3][6*BW-1:5*BW]},{array[4][6*BW-1:5*BW]},{array[5][6*BW-1:5*BW]}} ; 
-assign col[1] = {{array[0][5*BW-1:4*BW]},{array[1][5*BW-1:4*BW]},{array[2][5*BW-1:4*BW]},{array[3][5*BW-1:4*BW]},{array[4][5*BW-1:4*BW]},{array[5][5*BW-1:4*BW]}} ; 
-assign col[2] = {{array[0][4*BW-1:3*BW]},{array[1][4*BW-1:3*BW]},{array[2][4*BW-1:3*BW]},{array[3][4*BW-1:3*BW]},{array[4][4*BW-1:3*BW]},{array[5][4*BW-1:3*BW]}} ; 
-assign col[3] = {{array[0][3*BW-1:2*BW]},{array[1][3*BW-1:2*BW]},{array[2][3*BW-1:2*BW]},{array[3][3*BW-1:2*BW]},{array[4][3*BW-1:2*BW]},{array[5][3*BW-1:2*BW]}} ; 
-assign col[4] = {{array[0][2*BW-1:1*BW]},{array[1][2*BW-1:1*BW]},{array[2][2*BW-1:1*BW]},{array[3][2*BW-1:1*BW]},{array[4][2*BW-1:1*BW]},{array[5][2*BW-1:1*BW]}} ; 
-assign col[5] = {{array[0][1*BW-1:0*BW]},{array[1][1*BW-1:0*BW]},{array[2][1*BW-1:0*BW]},{array[3][1*BW-1:0*BW]},{array[4][1*BW-1:0*BW]},{array[5][1*BW-1:0*BW]}} ; 
-//assign col[6] = {{array[0][2*BW-1:1*BW]},{array[1][2*BW-1:1*BW]},{array[2][2*BW-1:1*BW]},{array[3][2*BW-1:1*BW]},{array[4][2*BW-1:1*BW]},{array[5][2*BW-1:1*BW]},{array[6][2*BW-1:1*BW]},{array[7][2*BW-1:1*BW]}} ; 
-//assign col[7] = {{array[0][1*BW-1:0*BW]},{array[1][1*BW-1:0*BW]},{array[2][1*BW-1:0*BW]},{array[3][1*BW-1:0*BW]},{array[4][1*BW-1:0*BW]},{array[5][1*BW-1:0*BW]},{array[6][1*BW-1:0*BW]},{array[7][1*BW-1:0*BW]}} ; 
-
-assign row[0] = {{array[0][6*BW-1:5*BW]},{array[0][5*BW-1:4*BW]},{array[0][4*BW-1:3*BW]},{array[0][3*BW-1:2*BW]},{array[0][2*BW-1:1*BW]},{array[0][1*BW-1:0*BW]}} ;  
-assign row[1] = {{array[1][6*BW-1:5*BW]},{array[1][5*BW-1:4*BW]},{array[1][4*BW-1:3*BW]},{array[1][3*BW-1:2*BW]},{array[1][2*BW-1:1*BW]},{array[1][1*BW-1:0*BW]}} ;  
-assign row[2] = {{array[2][6*BW-1:5*BW]},{array[2][5*BW-1:4*BW]},{array[2][4*BW-1:3*BW]},{array[2][3*BW-1:2*BW]},{array[2][2*BW-1:1*BW]},{array[2][1*BW-1:0*BW]}} ;  
-assign row[3] = {{array[3][6*BW-1:5*BW]},{array[3][5*BW-1:4*BW]},{array[3][4*BW-1:3*BW]},{array[3][3*BW-1:2*BW]},{array[3][2*BW-1:1*BW]},{array[3][1*BW-1:0*BW]}} ;  
-assign row[4] = {{array[4][6*BW-1:5*BW]},{array[4][5*BW-1:4*BW]},{array[4][4*BW-1:3*BW]},{array[4][3*BW-1:2*BW]},{array[4][2*BW-1:1*BW]},{array[4][1*BW-1:0*BW]}} ;  
-assign row[5] = {{array[5][6*BW-1:5*BW]},{array[5][5*BW-1:4*BW]},{array[5][4*BW-1:3*BW]},{array[5][3*BW-1:2*BW]},{array[5][2*BW-1:1*BW]},{array[5][1*BW-1:0*BW]}} ;  
-//assign row[6] = {{array[6][8*BW-1:7*BW]},{array[6][7*BW-1:6*BW]},{array[6][6*BW-1:5*BW]},{array[6][5*BW-1:4*BW]},{array[6][4*BW-1:3*BW]},{array[6][3*BW-1:2*BW]},{array[6][2*BW-1:1*BW]},{array[6][1*BW-1:0*BW]}} ;  
-//assign row[7] = {{array[7][8*BW-1:7*BW]},{array[7][7*BW-1:6*BW]},{array[7][6*BW-1:5*BW]},{array[7][5*BW-1:4*BW]},{array[7][4*BW-1:3*BW]},{array[7][3*BW-1:2*BW]},{array[7][2*BW-1:1*BW]},{array[7][1*BW-1:0*BW]}} ; 
+assign col[0] = {{array_0[6*BW-1:5*BW]},{array_1[6*BW-1:5*BW]},{array_2[6*BW-1:5*BW]},{array_3[6*BW-1:5*BW]},{array_4[5*BW-1:4*BW]},{array_5[4*BW-1:3*BW]}} ;
+assign col[1] = {{array_0[5*BW-1:4*BW]},{array_1[5*BW-1:4*BW]},{array_2[5*BW-1:4*BW]},{array_3[5*BW-1:4*BW]},{array_4[4*BW-1:3*BW]},{array_5[3*BW-1:2*BW]}} ;
+assign col[2] = {{array_0[4*BW-1:3*BW]},{array_1[4*BW-1:3*BW]},{array_2[4*BW-1:3*BW]},{array_3[4*BW-1:3*BW]},{array_4[3*BW-1:2*BW]},{array_5[2*BW-1:1*BW]}} ;
+assign col[3] = {{array_0[3*BW-1:2*BW]},{array_1[3*BW-1:2*BW]},{array_2[3*BW-1:2*BW]},{array_3[3*BW-1:2*BW]},{array_4[2*BW-1:1*BW]},{array_5[1*BW-1:0*BW]}} ;
+assign col[4] = {{array_0[2*BW-1:1*BW]},{array_1[2*BW-1:1*BW]},{array_2[2*BW-1:1*BW]},{array_3[2*BW-1:1*BW]},{array_4[1*BW-1:0*BW]}, 12'b0} ;
+assign col[5] = {{array_0[1*BW-1:0*BW]},{array_1[1*BW-1:0*BW]},{array_2[1*BW-1:0*BW]},{array_3[1*BW-1:0*BW]}, 24'b0} ;
+ 
+assign row[0] = {{array_0[6*BW-1:5*BW]},{array_0[5*BW-1:4*BW]},{array_0[4*BW-1:3*BW]},{array_0[3*BW-1:2*BW]},{array_0[2*BW-1:1*BW]},{array_0[1*BW-1:0*BW]}} ;
+assign row[1] = {{array_1[6*BW-1:5*BW]},{array_1[5*BW-1:4*BW]},{array_1[4*BW-1:3*BW]},{array_1[3*BW-1:2*BW]},{array_1[2*BW-1:1*BW]},{array_1[1*BW-1:0*BW]}} ;
+assign row[2] = {{array_2[6*BW-1:5*BW]},{array_2[5*BW-1:4*BW]},{array_2[4*BW-1:3*BW]},{array_2[3*BW-1:2*BW]},{array_2[2*BW-1:1*BW]},{array_2[1*BW-1:0*BW]}} ;
+assign row[3] = {{array_3[6*BW-1:5*BW]},{array_3[5*BW-1:4*BW]},{array_3[4*BW-1:3*BW]},{array_3[3*BW-1:2*BW]},{array_3[2*BW-1:1*BW]},{array_3[1*BW-1:0*BW]}} ;
+assign row[4] = {{array_4[5*BW-1:4*BW]},{array_4[4*BW-1:3*BW]},{array_4[3*BW-1:2*BW]},{array_4[2*BW-1:1*BW]},{array_4[1*BW-1:0*BW]}, 12'b0} ;
+assign row[5] = {{array_5[4*BW-1:3*BW]},{array_5[3*BW-1:2*BW]},{array_5[2*BW-1:1*BW]},{array_5[1*BW-1:0*BW]}, 24'b0} ;
+ 
 
 always@(*) begin
     if(counter[3]==1'b1) begin

@@ -1,11 +1,14 @@
-module Full_dct(
+module Full_dct_synthesis(
     input clk,
     input reset,
     input [8*8-1:0] data_in,
-    output [8*12-1:0] data_out,
+    output reg [8*12-1:0] data_out,
     output reg [15-1:0] cnt_in,
     output reg [15-1:0] cnt_out
 );
+    // for synthesis 
+    reg [8*8-1:0] data_in_q;
+    wire [8*12-1:0] data_out_d;
     // address of sram and counter;
     reg TP1_enable;
     reg TP2_enable;
@@ -59,7 +62,7 @@ module Full_dct(
     end
     // 1d dct output
     // After the first DCT output is 8*9 bits
-    DCT_1D DCT1(.data_in(data_in), .data_out(DCT_1D_out));
+    DCT_1D DCT1(.data_in(data_in_q), .data_out(DCT_1D_out));
     // counter for TPmem -> starts when counter + 1
     // enable for tp mem counter
     // storage enable when counter == 0
@@ -82,6 +85,17 @@ module Full_dct(
             cnt_out <= cnt_out + 1;
         end
     end
-    assign data_out = TP_2_out;
+    assign data_out_d = TP_2_out;
+    // synthesis
+    always @ (posedge clk) begin
+        if (!reset) begin
+            data_in_q <= 64'b0;
+            data_out <= 96'b0;
+        end else begin
+            data_in_q <= data_in;
+            data_out <= data_out_d;
+        end
+    end
+
+
 endmodule
-    
