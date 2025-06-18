@@ -14,15 +14,12 @@ module Full_dct(
     wire enable_0, enable_2;
     reg out_enable;
     wire [6*12-1:0] DCT_2D_out;
-        // output of first tpmem is 8*9 bits
+    // output of first tpmem is 8*8 bits
     wire [8*8-1:0] TP_0_out;
-    //wire [8*10-1:0] TP_1_out;
-        // 2nd DCT 
-    //wire [8*10-1:0] DCT_2D_in;
+    // 2nd DCT 
     wire dc_enable;
     // output of second tpmem is 8*12 bits
     wire [8*12-1:0] TP_2_out;
-    //wire [8*12-1:0] TP_3_out;
     always @(posedge clk) begin
         if (!reset) begin
             cnt_in <= 15'b0000_0000_0000_000;
@@ -41,16 +38,10 @@ module Full_dct(
                 TP1_enable <= 1'b1;
                 TP1_reset <= 1'b1;
             end 
-            //else if (cnt_in[3:0] == 4'b1000) begin
-            //    TP1_enable <= 1'b0;
-            //end
             else if (cnt_in[3:0] == 4'b1001) begin
                 TP2_enable <= 1'b1;
                 TP2_reset <= 1'b1;
             end
-            //else if (cnt_in[3:0] == 4'b0001) begin
-            //    TP2_enable <= 1'b0;
-            //end
             else begin
                 TP1_enable <= TP1_enable;
                 TP2_enable <= TP2_enable;
@@ -58,14 +49,10 @@ module Full_dct(
         end
     end
     // 1d dct output
-    // After the first DCT output is 8*9 bits
+    // After the first DCT output is 8*8 bits
     DCT_1D DCT1(.data_in(data_in), .data_out(DCT_1D_out));
-    // counter for TPmem -> starts when counter + 1
-    // enable for tp mem counter
-    // storage enable when counter == 0
-    TPmem_10bit TP0(.i_data(DCT_1D_out), .i_enable(TP1_enable), .i_clk(clk), .i_Reset(TP1_reset), .o_data(TP_0_out), .o_en(enable_0));
-    //TPmem_9bit TP1(.i_data(DCT_1D_out), .i_enable(~TP1_enable), .i_clk(clk), .i_Reset(TP1_reset), .o_data(TP_1_out), .o_en(enable_1));
-    // output of first tpmem is 8*9 bits
+
+    TPmem_8bit TP0(.i_data(DCT_1D_out), .i_enable(TP1_enable), .i_clk(clk), .i_Reset(TP1_reset), .o_data(TP_0_out), .o_en(enable_0));
 
 
     // enable for 2nd DCT -> dc value 
@@ -73,7 +60,6 @@ module Full_dct(
     DCT_2D DCT2(.data_in(TP_0_out), .control(dc_enable), .data_out(DCT_2D_out));
     // storage enable when counter == 10
     TPmem_updated TP2(.i_data(DCT_2D_out), .i_enable(TP2_enable), .i_clk(clk), .i_Reset(TP2_reset), .o_data(TP_2_out), .o_en(enable_2));
-    //TPmem TP3(.i_data(DCT_2D_out), .i_enable(~TP2_enable), .i_clk(clk), .i_Reset(TP2_reset), .o_data(TP_3_out), .o_en(enable_3));
     // address for output memory
     always @(posedge clk) begin
         if (!out_enable) begin

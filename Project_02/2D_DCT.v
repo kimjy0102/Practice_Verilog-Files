@@ -102,5 +102,5 @@ module DCT_2D(
             end
         end
     end
-    assign data_out = {z0_ov, z1_ov, z2[15:4], z3[15:4], z4[15:4], z5[15:4]};//, 12'b0, 12'b0};
+    assign data_out = {z0_ov, z1_ov, z2[15:4], z3[15:4], z4[15:4], z5[15:4]};
 endmodule

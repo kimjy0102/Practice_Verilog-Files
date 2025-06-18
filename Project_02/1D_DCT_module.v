@@ -3,8 +3,7 @@ module DCT_1D (
     output [8*8-1:0] data_out
 );
     // Internal signals
-    wire signed [20-1:0] z0, z1, z2, z3, z4, z5, z6, z7; // 18bit maximum
-    //wire signed [9-1:0] c1, c2, c3, c4, c5, c6, c7; // 9.8
+    wire signed [20-1:0] z0, z1, z2, z3, z4, z5, z6, z7; // 20bit maximum
     wire signed [9-1:0] x_0, x_1, x_2, x_3, x_4, x_5, x_6, x_7;
     // sign extension
     assign x_0 = {1'b0, data_in[63:56]};

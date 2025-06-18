@@ -1,4 +1,4 @@
-module TPmem_10bit
+module TPmem_8bit
 #( parameter BW = 8 )
 
 (  input [8*BW-1:0]  i_data,
@@ -112,4 +112,3 @@ assign w_en = counter[3] ;
 assign w_data = data_out ; 
 
 endmodule
-

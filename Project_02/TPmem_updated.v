@@ -8,7 +8,7 @@ module TPmem_updated
    output reg [8*BW-1:0] o_data,
    output reg	   o_en
 );
-// make counter outside
+
 reg [4-1:0]  counter ;
 reg [6*BW-1:0] array_0;
 reg [6*BW-1:0] array_1;
