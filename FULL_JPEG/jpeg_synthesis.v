@@ -4,11 +4,13 @@ module top_jpeg_synthesis(
     input [8*8-1:0] data_in,
     output reg [8*8-1:0] data_out,
     output reg [15-1:0] address_in,
-    output [15-1:0] address_out
+    output reg [15-1:0] address_out
 );
     //synthesis
+    reg [8*12-1:0] dequant_out_q;
     reg [8*8-1:0] data_in_q;
     wire [8*8-1:0] data_out_d;
+    wire [15-1:0] address_out_d;
     // counter for all 
     always @(posedge clk) begin
         if (!reset) begin
@@ -39,8 +41,16 @@ module top_jpeg_synthesis(
     // Dequantization
     wire [8*12-1:0] Dequant_out;
     Dequantization Dequant(.data_in(inverse_zigzag_out), .data_out(Dequant_out), .cnt_in(address_in)); // first data out at 26
+    // add dff
+    always @(posedge clk) begin
+        if (!reset) begin
+            dequant_out_q <= 96'b0;
+        end else begin
+            dequant_out_q <= Dequant_out;
+        end
+    end
     // Inverse DCT
-    Full_idct IDCT(.clk(clk), .reset(reset), .data_in(Dequant_out), .data_out(data_out_d), .cnt_in(address_in), .cnt_out(address_out));    
+    Full_idct IDCT(.clk(clk), .reset(reset), .data_in(dequant_out_q), .data_out(data_out_d), .cnt_in(address_in), .cnt_out(address_out_d));    
     // synthesis
     always @ (posedge clk) begin
         if (!reset) begin
@@ -49,6 +59,7 @@ module top_jpeg_synthesis(
         end else begin
             data_in_q <= data_in;
             data_out <= data_out_d;
+            address_out <= address_out_d;
         end
     end
 endmodule

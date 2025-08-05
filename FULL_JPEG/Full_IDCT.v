@@ -28,14 +28,14 @@ module Full_idct(
             TP2_reset <= 1'b0;
         end
         else begin
-            if (cnt_in == 15'b000_0000_0010_1011) begin
+            if (cnt_in == 15'b000_0000_0010_1100) begin
                 out_enable <= 1'b1;
             end
-            if (cnt_in == 15'b000_0000_0001_1001) begin
+            if (cnt_in == 15'b000_0000_0001_1010) begin
                 TP1_enable <= 1'b1;
                 TP1_reset <= 1'b1;
             end 
-            else if (cnt_in == 15'b000_0000_00010_0010) begin
+            else if (cnt_in == 15'b000_0000_00010_0011) begin
                 TP2_enable <= 1'b1;
                 TP2_reset <= 1'b1;
             end

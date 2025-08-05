@@ -7,6 +7,7 @@ module top_jpeg(
     output [15-1:0] address_out
 );
     // counter for all 
+    reg [8*12-1:0] dequant_out_q;
     always @(posedge clk) begin
         if (!reset) begin
             address_in <= 15'b0000_0000_0000_000;
@@ -36,6 +37,14 @@ module top_jpeg(
     // Dequantization
     wire [8*12-1:0] Dequant_out;
     Dequantization Dequant(.data_in(inverse_zigzag_out), .data_out(Dequant_out), .cnt_in(address_in)); // first data out at 26
+    // add dff
+    always @(posedge clk) begin
+        if (!reset) begin
+            dequant_out_q <= 96'b0;
+        end else begin
+            dequant_out_q <= Dequant_out;
+        end
+    end
     // Inverse DCT
-    Full_idct IDCT(.clk(clk), .reset(reset), .data_in(Dequant_out), .data_out(data_out), .cnt_in(address_in), .cnt_out(address_out));    
+    Full_idct IDCT(.clk(clk), .reset(reset), .data_in(dequant_out_q), .data_out(data_out), .cnt_in(address_in), .cnt_out(address_out));    
 endmodule

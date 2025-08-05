@@ -16,15 +16,15 @@ always #5 clk <= ~clk;
 
 top_jpeg_test TEST(clk,reset); // define input & output ports of your top module by youself 
 
-initial	$readmemh("image_in_8.txt", TEST.MEM_IN.SRAM_syn.SRAM32768x64.Mem); //input image, check the path of memory rocation (module instance)
+initial	$readmemh("image_in_4.txt", TEST.MEM_IN.SRAM_syn.SRAM32768x64.Mem); //input image, check the path of memory rocation (module instance)
 
 integer f;
 integer i;
 initial
 begin
-	f = $fopen("Result_image_8.txt","w"); //output image, this is the output file that finished 2D-DCT operations.
+	f = $fopen("Result_image_4.txt","w"); //output image, this is the output file that finished 2D-DCT operations.
 
-	#328150; //change if you need
+	#328160; //change if you need
 
 	for (i = 0; i<32768; i=i+1)
 	begin
