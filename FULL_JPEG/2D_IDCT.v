@@ -90,14 +90,14 @@ module IDCT_2D#(
     assign z6_clip = z6[22:9];
     assign z7_clip = z7[22:9];
     // round off
-    reg [8-1:0] result_0;
-    reg [8-1:0] result_1;
-    reg [8-1:0] result_2;
-    reg [8-1:0] result_3;
-    reg [8-1:0] result_4;
-    reg [8-1:0] result_5;
-    reg [8-1:0] result_6;
-    reg [8-1:0] result_7;
+    wire [8-1:0] result_0;
+    wire [8-1:0] result_1;
+    wire [8-1:0] result_2;
+    wire [8-1:0] result_3;
+    wire [8-1:0] result_4;
+    wire [8-1:0] result_5;
+    wire [8-1:0] result_6;
+    wire [8-1:0] result_7;
     assign result_0 = ((z0[22:9] == 8'b1111_1111) && (z0[8])) ? 8'b1111_1111 : z0[16:9] + z0[8];
     assign result_1 = ((z1[22:9] == 8'b1111_1111) && (z1[8])) ? 8'b1111_1111 : z1[16:9] + z1[8];
     assign result_2 = ((z2[22:9] == 8'b1111_1111) && (z2[8])) ? 8'b1111_1111 : z2[16:9] + z2[8];
