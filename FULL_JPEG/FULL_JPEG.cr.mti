@@ -1,0 +1,215 @@
+C:/intelFPGA/20.1/VLSI/FULL_JPEG/TPmem.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/TPmem.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module TPmem
+
+Top level modules:
+	TPmem
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/1D_DCT_module.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/1D_DCT_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module DCT_1D
+
+Top level modules:
+	DCT_1D
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/1D_IDCT_module.v {1 {vlog -work work -stats=none {C:\intelFPGA\20.1\VLSI\FULL_JPEG\1D_IDCT_module.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module IDCT_1D
+
+Top level modules:
+	IDCT_1D
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Full_IDCT.v {2 {vlog -work work -stats=none {C:\intelFPGA\20.1\VLSI\FULL_JPEG\Full_IDCT.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Full_idct
+** Warning: C:\intelFPGA\20.1\VLSI\FULL_JPEG\Full_IDCT.v(38): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+
+Top level modules:
+	Full_idct
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/64bit_module.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/64bit_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module module_64bit
+
+Top level modules:
+	module_64bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/jpeg_synthesis.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/jpeg_synthesis.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module top_jpeg_synthesis
+
+Top level modules:
+	top_jpeg_synthesis
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Inverse_zigzag.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/Inverse_zigzag.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module inverse_zigzag
+
+Top level modules:
+	inverse_zigzag
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Dequantization.v {1 {vlog -work work -stats=none {C:\intelFPGA\20.1\VLSI\FULL_JPEG\Dequantization.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Dequantization
+
+Top level modules:
+	Dequantization
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/RLE_module.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/RLE_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module RLE
+
+Top level modules:
+	RLE
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/4bit_module.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/4bit_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module module_4bit
+
+Top level modules:
+	module_4bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Deocder_14bit.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/Deocder_14bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module decoder_14bit
+
+Top level modules:
+	decoder_14bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/32bit_module.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/32bit_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module module_32bit
+
+Top level modules:
+	module_32bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/TPmem_11bit.v {1 {vlog -work work -stats=none {C:\intelFPGA\20.1\VLSI\FULL_JPEG\TPmem_11bit.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module TPmem_11bit
+
+Top level modules:
+	TPmem_11bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/16bit_module.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/16bit_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module module_16bit
+
+Top level modules:
+	module_16bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Zigzag.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/Zigzag.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module zigzag
+
+Top level modules:
+	zigzag
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/SRAM32768x96.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/SRAM32768x96.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module SRAM32768x96
+-- Compiling module spsram_hd_32768x96m16
+-- Compiling module SRAM2
+
+Top level modules:
+	SRAM32768x96
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/8bit_module.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/8bit_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module module_8bit
+
+Top level modules:
+	module_8bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Full_DCT.v {1 {vlog -work work -stats=none {C:\intelFPGA\20.1\VLSI\FULL_JPEG\Full_DCT.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Full_dct
+
+Top level modules:
+	Full_dct
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Quantization.v {1 {vlog -work work -stats=none {C:\intelFPGA\20.1\VLSI\FULL_JPEG\Quantization.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Quantization
+
+Top level modules:
+	Quantization
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/SRAM32768x64.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/SRAM32768x64.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module SRAM32768x64
+-- Compiling module spsram_hd_32768x64m16
+-- Compiling module SRAM
+
+Top level modules:
+	SRAM32768x64
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/2D_DCT.v {1 {vlog -work work -stats=none {C:\intelFPGA\20.1\VLSI\FULL_JPEG\2D_DCT.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module DCT_2D
+
+Top level modules:
+	DCT_2D
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/butterfly_unit.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/butterfly_unit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module butterfly_9bit
+-- Compiling module butterfly_10bit
+-- Compiling module butterfly_11bit
+-- Compiling module butterfly_8bit
+
+Top level modules:
+	butterfly_9bit
+	butterfly_10bit
+	butterfly_11bit
+	butterfly_8bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Decoder_full.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/Decoder_full.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module decoder_full
+
+Top level modules:
+	decoder_full
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Top_module.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/Top_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module top_jpeg
+
+Top level modules:
+	top_jpeg
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/2D_IDCT.v {1 {vlog -work work -stats=none {C:\intelFPGA\20.1\VLSI\FULL_JPEG\2D_IDCT.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module IDCT_2D
+
+Top level modules:
+	IDCT_2D
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/TPmem_updated.v {1 {vlog -work work -stats=none {C:\intelFPGA\20.1\VLSI\FULL_JPEG\TPmem_updated.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module TPmem_updated
+
+Top level modules:
+	TPmem_updated
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/TPmem_8bit.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/TPmem_8bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module TPmem_8bit
+
+Top level modules:
+	TPmem_8bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/TPmem_10bit.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/TPmem_10bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module TPmem_10bit
+
+Top level modules:
+	TPmem_10bit
+
+} {} {}} C:/intelFPGA/20.1/VLSI/FULL_JPEG/Top_Top_module.v {1 {vlog -work work -stats=none C:/intelFPGA/20.1/VLSI/FULL_JPEG/Top_Top_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module top_jpeg_test
+
+Top level modules:
+	top_jpeg_test
+
+} {} {}}

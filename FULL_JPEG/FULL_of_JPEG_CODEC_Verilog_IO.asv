@@ -1,0 +1,295 @@
+clear all
+close all
+clc
+
+for image_number = 4:4
+    %% ------------------------------ INITIAL SETUP -------------------------------
+    fprintf('image_number : %d\n', image_number)
+    input_image_512x512 = double(imread(sprintf('image_in_%d.tif',image_number),'tiff'));
+
+    %%% Display current input image
+    
+    [m,n] = size(input_image_512x512);
+    
+    bit_width    = 8;
+    block_width  = 8;
+    block_height = 8;
+
+    m = floor(m/block_height)*block_height;
+    n = floor(n/block_width)*block_width;
+
+    subplot(4,4,image_number*2-1);
+    imshow(input_image_512x512./(2^bit_width-1));
+    title(sprintf('Original image #%d \n size : %dx%d',image_number,m,n));
+
+    
+
+    %% ------------------------------ DCT SETUP (EDIT HERE) ------------------------------
+
+    %%% Quantization coefficient after DCT operation (Not used for DCT)
+    
+    % Reference Matrix (For Decoding)
+    Q=[16  11  10  16    24    40     51    61;
+       12  12  14  19    26    58     60    55;
+       14  13  16  24    40    57     69    56;
+       14  17  22  29    51    87     80    62;
+       18  22  37  56    68    109    103   77;
+       24  35  55  64    81    104    113   92;
+       49  64  78  87    103   121    120   101;
+       72  92  95  98    112   100    103   99];
+   
+    Q_pre=[16   11  10  16    24    40     51    61;
+       12  12  14  19    26    58     60    55;
+       14  13  16  24    40    57     69    56;
+       14  17  22  29    51    87     80    62;
+       18  22  37  56    68    109    103   77;
+       24  35  55  64    81    104    113   92;
+       49  64  78  87    103   121    120   101;
+       72  92  95  98    112   100    103   99];
+
+
+
+    q_imsi = 1./Q_pre
+    
+    q_const = 9
+
+    q_imsi2 = q_imsi * 2^q_const
+
+    q_imsi3 = floor(q_imsi2)
+
+    q_imsi4 = q_imsi3 * 2^(-q_const)
+
+
+    %%% The number of bits for DCT Coefficient Quantization
+    % You can "adjust this number" to improve the qualities of images.
+    C_quantization_bit = 10;     
+    c = [0.483886719	0.479492188	0.395996094	0.353515625	0.298339844	0.209472656	0.096679688];
+    %c = [0.5	0.4375	0.421875	0.353515625	0.28125	0.19140625	0.0703125];
+    %T = func_DCT_Coefficient_quant(C_quantization_bit);
+    T=[c(4)  +c(4)  +c(4)  +c(4)  +c(4)  +c(4)   +c(4)   +c(4);
+       c(1)  +c(3)  +c(5)  +c(7)  -c(7)  -c(5)   -c(3)   -c(1);
+       c(2)  +c(6)  -c(6)  -c(2)  -c(2)  -c(6)   +c(6)   +c(2);
+       c(3)  -c(7)  -c(1)  -c(5)  +c(5)  +c(1)   +c(7)   -c(3);
+       c(4)  -c(4)  -c(4)  +c(4)  +c(4)  -c(4)   -c(4)   +c(4);
+       c(5)  -c(1)  +c(7)  +c(3)  -c(3)  -c(7)   +c(1)   -c(5);
+       c(6)  -c(2)  +c(2)  -c(6)  -c(6)  +c(2)   -c(2)   +c(6);
+       c(7)  -c(5)  +c(3)  -c(1)  +c(1)  -c(3)   +c(5)   -c(7)];
+    c1 = [0.483886719	0.479492188	0.395996094	0.353515625	0.298339844	0.209472656	0.096679688];
+    T1=[c1(4)  +c1(4)  +c1(4)  +c1(4)  +c1(4)  +c1(4)   +c1(4)   +c1(4);
+       c1(1)  +c1(3)  +c1(5)  +c1(7)  -c1(7)  -c1(5)   -c1(3)   -c1(1);
+       c1(2)  +c1(6)  -c1(6)  -c1(2)  -c1(2)  -c1(6)   +c1(6)   +c1(2);
+       c1(3)  -c1(7)  -c1(1)  -c1(5)  +c1(5)  +c1(1)   +c1(7)   -c1(3);
+       c1(4)  -c1(4)  -c1(4)  +c1(4)  +c1(4)  -c1(4)   -c1(4)   +c1(4);
+       c1(5)  -c1(1)  +c1(7)  +c1(3)  -c1(3)  -c1(7)   +c1(1)   -c1(5);
+       c1(6)  -c1(2)  +c1(2)  -c1(6)  -c1(6)  +c1(2)   -c1(2)   +c1(6);
+       c1(7)  -c1(5)  +c1(3)  -c1(1)  +c1(1)  -c1(3)   +c1(5)   -c1(7)];
+    
+    
+    tT = T*T1'
+    TT = T^(-1)
+    %%% The number of bits for Result of 1D-DCT Quantization
+
+    % You can "adjust this number" to improve the qualities of images.
+    Result_1D_DCT_quantization_bit = 8;
+    % The number of integer bits for Result of 1D-DCT
+    num_int = 11;
+
+    %% ------------------------------ DCT OPERATION ------------------------------
+
+    %% ------------------------------ ZIGZAG ENCODING ------------------------------
+    
+    % Order of ZigZag Encoding
+    
+
+    
+
+    %% ------------------------------ RUN LEVEL CODING ------------------------------
+    
+        
+    %% ------------------------------ End of 2D DCT, Quantization, Entropy Encoding ------------------------------
+    
+    
+        
+    %%% After the Transformation, Assume lossless entropy coding and lossless communication channel
+
+    %% ------------------------------ START of Entropy Decoding, Dequantization, 2D IDCT ------------------------------
+
+    %% ------------------------------- RUN LEVEL DECODING -------------------------------
+    
+    
+
+    % Reconstruct ZigZaged_Single_Column_Image from decoded data
+
+    
+    
+    %% -------------------------------  ZIGZAG DECODING -------------------------------
+    
+    
+
+    
+    %% ------------------------------- INVERSE DCT -------------------------------
+    %% dequantization results
+    filename = 'Dequant_image_5.txt';
+    fid = fopen(filename, 'r');
+    lines = textscan(fid, '%s', 'Delimiter', '\n');
+    fclose(fid);
+
+    lines = lines{1};
+    nlines = numel(lines);      % 32768
+    blocks_per_side = 64;
+    nBlocks = blocks_per_side^2;
+
+    block_buf2 = zeros(8, 8, nBlocks, 'int16');  % 8x12x4096, signed 12bit
+
+    for blk = 1:nBlocks
+        % 한 블록 = 8줄
+        block_mat = zeros(8,8,'int16');
+        for row = 1:8
+            idx = (blk-1)*8 + row;
+            bin_line = lines{idx};   % ex: '010011111000010101001011...'(길이 64)
+            vals = zeros(1,8,'int16');
+            for k = 1:8
+                bits = bin_line((k-1)*12+1 : k*12); % 12bit 문자
+                v = bin2dec(bits);
+                %    sign extension
+                if v >= 2048
+                    v = v - 4096;
+                end
+                vals(k) = v;
+            end
+            block_mat(row,:) = vals;
+        end
+        block_buf2(:,:,blk) = block_mat;
+    end
+
+    % --- block order 변환: Verilog row-major → MATLAB column-major ---
+    img2 = zeros(512,512,'int16');
+    for blk_row = 0:blocks_per_side-1
+        for blk_col = 0:blocks_per_side-1
+            verilog_block_idx = blk_row * blocks_per_side + blk_col + 1;
+            % MATLAB 복원은 col-major 순서
+            row_start = blk_row*8 + 1;
+            col_start = blk_col*8 + 1;
+            img2(row_start:row_start+7, col_start:col_start+7) = block_buf2(:,:,verilog_block_idx);
+        end
+    end
+    img2 = double(img2);
+    % Allocate the array for restored image
+    Restored_Image = zeros(256,256);
+    count = 0;
+    for i=1:m/block_height
+        for j=1:n/block_width
+            % Take each 8*8 block
+            Block_temp = img2((block_height*(i-1)+1):(block_height*i),(block_width*(j-1)+1):(block_width*j));
+            % Dequantization using reference matrix
+            %Block_rq2 = Q.*Block_temp2;
+            Block_rq = Block_temp;
+            if (Block_rq > 2047)
+                count = count + 1;
+            end
+            % HW-accurate IDCT
+            % DCT Output Matrix
+            %%% HW-accurate 2D-IDCT
+            % 1st DCT [Z = T' * X']
+            Block_IDCT_1D_temp = T'*Block_temp';
+            % Quantize 1st DCT result to fit memory
+            Block_IDCT_1D_quant = func_DCTquant(Block_IDCT_1D_temp, 12, num_int, block_width, block_height);
+            % 2nd DCT [Z* = T' * (T' * X')' = T' * X * T]
+            Block_IDCT_2D_temp = T'*Block_IDCT_1D_quant';
+            % Quantize 2nd DCT result to fit memory
+            %Block_IDCT = func_DCTquant_trunc(Block_IDCT_2D_temp, block_width, block_height);
+
+            %%% Values for debugging
+            
+            Block_DCT_1D_debug((block_height*(i-1)+1):(block_height*i),(block_width*(j-1)+1):(block_width*j)) = (Block_IDCT_1D_quant);   % result of 1D DCT for debugging
+            Block_DCT_2D_debug((block_height*(i-1)+1):(block_height*i),(block_width*(j-1)+1):(block_width*j)) = (Block_IDCT_2D_temp);    % result of 2D DCT for debugging
+            
+            % Non HW-accurate IDCT
+            %Block_IDCT0 = T'*Block_rq;
+            %Block_IDCT0 = floor(Block_IDCT0);
+            %Block_IDCT = Block_IDCT0*T;
+            % 
+            Restored_Image((block_height*(i-1)+1):(block_height*i),(block_width*(j-1)+1):(block_width*j)) = Block_IDCT_2D_temp; 
+            %Block_IDCT;
+        end
+    end   
+    count 
+
+    %%% Keeping values within int8
+    for i=1:m
+        for j=1:n
+            if Restored_Image(i,j) > 2^bit_width-1
+               Restored_Image(i,j) = 2^bit_width-1;
+            end
+
+            if Restored_Image(i,j) < 0
+               Restored_Image(i,j) = 0;
+            end
+
+        end
+    end   
+
+    %% ------------------------------- EVALUATION -------------------------------
+    filename = 'Result_image_5.txt';   % 실제 파일명 입력
+    fid = fopen(filename, 'r');
+    lines = textscan(fid, '%s', 'Delimiter', '\n');
+    fclose(fid);
+    lines = lines{1};
+    nlines = numel(lines);      % 32768
+
+    blocks_per_side = 64;
+    nBlocks = blocks_per_side^2;
+
+    block_buf = zeros(8, 8, nBlocks, 'uint8');  % 8x8x4096
+    for blk = 1:nBlocks
+        block_mat = zeros(8,8,'uint8');
+        for row = 1:8
+            idx = (blk-1)*8 + row;
+            bin_line = lines{idx};
+            vals = zeros(1,8,'uint8');
+            for k = 1:8
+                bits = bin_line((k-1)*8+1 : k*8);
+                v = bin2dec(bits);
+                vals(k) = v;
+            end
+            block_mat(row,:) = vals;
+        end
+        block_buf(:,:,blk) = block_mat;
+    end
+    img3 = zeros(512,512,'uint8');
+    for blk_row = 0:blocks_per_side-1
+        for blk_col = 0:blocks_per_side-1
+            verilog_block_idx = blk_row * blocks_per_side + blk_col + 1;
+            row_start = blk_row*8 + 1;
+            col_start = blk_col*8 + 1;
+            img3(row_start:row_start+7, col_start:col_start+7) = block_buf(:,:,verilog_block_idx);
+        end
+    end
+    img3 = double(img3);
+    %%% Generate the output image file (.tif)
+    rounded_image = uint8(Restored_Image);
+    output_file_name2 = sprintf( 'image_out_matlab_%d.tif',image_number);
+    imwrite(uint8(Restored_Image),output_file_name2,'tif');
+    output_file_name = sprintf( 'image_out_verilog_%d.tif',image_number);
+    imwrite(uint8(img3),output_file_name,'tif');
+    
+    %%% Calculate the PSNR
+    MSE = 0;
+
+    for row = 1:m
+        for col = 1:n
+            MSE = MSE + (input_image_512x512(row, col) - Restored_Image(row, col)) ^ 2;
+        end
+    end
+
+    MSE = MSE / (m * n);
+    PSNR(1,image_number) = 10 * log10 (((2^bit_width-1)^2) / MSE);
+
+    %%% Show the output image
+    subplot(4,4,image_number*2);
+    imshow(Restored_Image./(2^bit_width-1));
+    title ( sprintf('Restored image #%d \n PSNR : %d',image_number,PSNR(image_number)));
+
+    %% ------------------------------- END -------------------------------
+
+ end
