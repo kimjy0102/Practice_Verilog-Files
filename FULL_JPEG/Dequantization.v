@@ -23,7 +23,7 @@ module Dequantization(
     //wire signed [12-1:0] result6;
     //wire signed [12-1:0] result7;
     always @(*) begin
-        if (cnt_in[2:0] == 3'b010) begin
+        if (cnt_in[2:0] == 3'b100) begin
             x0 = 7'b0010000;
             x1 = 7'b0001011;
             x2 = 7'b0001010;
@@ -33,7 +33,7 @@ module Dequantization(
             //x6 = 7'b0000000;
             //x7 = 7'b0000000;
         end
-        else if (cnt_in[2:0] == 3'b011) begin
+        else if (cnt_in[2:0] == 3'b101) begin
             x0 = 7'b0001100;
             x1 = 7'b0001100;
             x2 = 7'b0001110;
@@ -43,7 +43,7 @@ module Dequantization(
             //x6 = 7'b0000000;
             //x7 = 7'b0000000;
         end
-        else if (cnt_in[2:0] == 3'b100) begin
+        else if (cnt_in[2:0] == 3'b110) begin
             x0 = 7'b0001110;
             x1 = 7'b0001101;
             x2 = 7'b0010000;
@@ -53,7 +53,7 @@ module Dequantization(
             //x6 = 7'b0000000;
             //x7 = 7'b0000000;
         end
-        else if (cnt_in[2:0] ==3'b101) begin
+        else if (cnt_in[2:0] ==3'b111) begin
             x0 = 7'b0001110; 
             x1 = 7'b0010001;
             x2 = 7'b0010110;
@@ -63,7 +63,7 @@ module Dequantization(
             //x6 = 7'b0000000;
             //x7 = 7'b0000000;
         end
-        else if (cnt_in[2:0] ==3'b110) begin
+        else if (cnt_in[2:0] ==3'b000) begin
             x0 = 7'b0010010; 
             x1 = 7'b0010110;
             x2 = 7'b0100101;
@@ -73,7 +73,7 @@ module Dequantization(
             //x6 = 7'b0000000;
             //x7 = 7'b0000000;
         end
-        else if (cnt_in[2:0] ==3'b111) begin
+        else if (cnt_in[2:0] ==3'b001) begin
             x0 = 7'b0011000;
             x1 = 7'b0100011;
             x2 = 7'b0110111;
@@ -83,7 +83,7 @@ module Dequantization(
             //x6 = 7'b0000000;
             //x7 = 7'b0000000;
         end
-        else if (cnt_in[2:0] ==3'b000) begin
+        else if (cnt_in[2:0] ==3'b010) begin
             x0 = 7'b000000;
             x1 = 7'b000000;
             x2 = 7'b000000;
@@ -93,7 +93,7 @@ module Dequantization(
             //x6 = 7'b000000;
             //x7 = 7'b000000;
         end
-        else if (cnt_in[2:0] ==3'b001) begin
+        else if (cnt_in[2:0] ==3'b011) begin
             x0 = 7'b000000;
             x1 = 7'b000000;
             x2 = 7'b000000;

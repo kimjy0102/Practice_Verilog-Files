@@ -72,28 +72,28 @@ module inverse_zigzag(
     assign array[62] = data_in[8*2-1:8*1];
     assign array[63] = data_in[8*1-1:8*0];
     always @(*) begin
-        if (address_in[2:0] == 3'b010) begin
+        if (address_in[2:0] == 3'b100) begin
             data_out_d = {array[0], array[1], array[5], array[6], array[14], array[15], array[27], array[28]};
         end
-        else if (address_in[2:0] == 3'b011) begin
+        else if (address_in[2:0] == 3'b101) begin
             data_out_d = {array[2], array[4], array[7], array[13], array[16], array[26], array[29], array[42]};
         end
-        else if (address_in[2:0] == 3'b100) begin
+        else if (address_in[2:0] == 3'b110) begin
             data_out_d = {array[3], array[8], array[12], array[17], array[25], array[30], array[41], array[43]};
         end
-        else if (address_in[2:0] == 3'b101) begin
+        else if (address_in[2:0] == 3'b111) begin
             data_out_d = {array[9], array[11], array[18], array[24], array[31], array[40], array[44], array[53]};
         end
-        else if (address_in[2:0] == 3'b110) begin
+        else if (address_in[2:0] == 3'b000) begin
             data_out_d = {array[10], array[19], array[23], array[32], array[39], array[45], array[52], array[54]};
         end
-        else if (address_in[2:0] == 3'b111) begin
+        else if (address_in[2:0] == 3'b001) begin
             data_out_d = {array[20], array[22], array[33], array[38], array[46], array[51], array[55], array[60]};
         end
-        else if (address_in[2:0] == 3'b000) begin
+        else if (address_in[2:0] == 3'b010) begin
             data_out_d = {array[21], array[34], array[37], array[47], array[50], array[56], array[59], array[61]};
         end
-        else if (address_in[2:0] == 3'b001) begin
+        else if (address_in[2:0] == 3'b011) begin
             data_out_d = {array[35], array[36], array[48], array[49], array[57], array[58], array[62], array[63]};
         end
     end
